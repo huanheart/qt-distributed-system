@@ -8,15 +8,17 @@
 #include<QMessageBox>
 
 
-#include"request/userRequest.hpp"
-#include"requestSender/jsonRequestSender.h"
-#include"request/musicRequest.hpp"
+#include"request/user/captcha.h"
+#include"request/user/login.h"
+#include"request/user/register.h"
+
 
 #include"router/userRouter.h"
 #include"router/musicRouter.h"
 
 #include"router/router.h"
 
+#include"requestSender/userrequestsender.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -30,12 +32,11 @@ private:
     void init();
 
 private:
-    JsonRequestSender* sender;
 
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
-
+    userRequestSender* user_sender=nullptr;
 
 private slots:
     void on_login_clicked();

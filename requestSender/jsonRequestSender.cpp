@@ -1,11 +1,6 @@
 #include"jsonRequestSender.h"
 
 
-void JsonRequestSender::resetData(){
-    back_data.clear();
-    Error.clear();
-    is_success = true;
-}
 
 
 void JsonRequestSender::sendPostRequest(const QUrl &url, const JsonRequest &request,SuccessCallback onSuccess,FailureCallback onFail) {

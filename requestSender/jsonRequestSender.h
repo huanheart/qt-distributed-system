@@ -33,8 +33,6 @@ public:
 
     void sendGetRequest(const QUrl &url, const JsonRequest &request,SuccessCallback onSuccess,FailureCallback onFail);
 
-    //每次请求的时候必须调用，否则可能会出错
-    void resetData();
 
 public:
     QByteArray back_data;

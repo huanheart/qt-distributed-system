@@ -38,6 +38,7 @@ QString Router::GetLoginPath(){
     return GetRouterPath()+userRouter::GetInstance()->GetLoginPath();
 }
 QString Router::GetCaptchaPath(){
+    qDebug()<<GetRouterPath()+userRouter::GetInstance()->GetCaptchaPath();
     return GetRouterPath()+userRouter::GetInstance()->GetCaptchaPath();
 }
 

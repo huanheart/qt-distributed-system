@@ -5,9 +5,13 @@
 #include<iostream>
 #include<QString>
 #include<unordered_map>
+#include<QDebug>
+
 
 #include"musicRouter.h"
 #include"userRouter.h"
+
+
 
 using namespace std;
 
@@ -20,7 +24,7 @@ class Router
 {
 public:
     QString GetRouterPath(){
-        return server_ip+QString(port)+version;
+        return server_ip+":"+QString::number(port)+version;
     }
     //用户相关api
     QString GetRegisterPath();
@@ -44,7 +48,7 @@ private:
 private:
     QString version="/api/v1";
 
-    QString server_ip="http://192.168.1.15";
+    QString server_ip="http://192.168.15.1";
     int port=8000;
 
 };
