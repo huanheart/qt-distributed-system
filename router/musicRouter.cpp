@@ -1,0 +1,13 @@
+#include"musicRouter.h"
+
+
+
+
+QString musicRouter::GetMusicUploadPath(){
+    return music_path+music_upload_path;
+}
+
+// /music/music_download
+QString musicRouter::GetMusicDownloadPath(){
+    return music_path+music_download_path;
+}

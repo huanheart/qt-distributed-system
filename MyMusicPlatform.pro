@@ -10,9 +10,15 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    router/musicRouter.cpp \
+    router/router.cpp \
+    router/userRouter.cpp \
     widget.cpp
 
 HEADERS += \
+    router/musicRouter.h \
+    router/router.h \
+    router/userRouter.h \
     widget.h
 
 FORMS += \
