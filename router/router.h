@@ -57,17 +57,17 @@ class HttpCodeStatus{
 public:
     bool IsSuccess(int code);
 
-    static HttpCodeStatus& GetInstance(){
+    static HttpCodeStatus* GetInstance(){
         static HttpCodeStatus r;
-        return r;
+        return &r;
     }
-
+    unordered_map<int,QString> codeMap;
 private:
     const int success_code=1000;
     HttpCodeStatus();
     HttpCodeStatus(const Router&)=delete;
     HttpCodeStatus& operator=(const HttpCodeStatus&) = delete;
-    unordered_map<int,string> codeMap;
+
 };
 
 

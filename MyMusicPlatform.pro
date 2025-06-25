@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,12 +10,17 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    requestSender/jsonRequestSender.cpp \
     router/musicRouter.cpp \
     router/router.cpp \
     router/userRouter.cpp \
     widget.cpp
 
 HEADERS += \
+    request/jsonRequest.hpp \
+    request/musicRequest.hpp \
+    request/userRequest.hpp \
+    requestSender/jsonRequestSender.h \
     router/musicRouter.h \
     router/router.h \
     router/userRouter.h \
