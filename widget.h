@@ -46,6 +46,10 @@ private slots:
 
     void on_captcha_clicked();
 
+    void on_download_clicked();
+
+    void on_upload_clicked();
+
 private:
     Ui::Widget *ui;
 };

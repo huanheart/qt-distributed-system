@@ -4,28 +4,24 @@
 #include "../formDataRequest.hpp"
 
 
+
 class MusicUploadRequest : public FormDataRequest{
 
 public:
     MusicUploadRequest()=default;
 
+    //由于上传服务，不需要传其他字段，固然这边直接返回一个空map即可
     QMap<QString,QVariant> toMap() const override;
+    void setRequest();
+public:
 
 public:
-    //存放对应的指定文件路径
-
-private:
-    //存放指定字段，但是上传
 
 
 };
 
-//todo:待封装
-QMap<QString,QVariant> MusicUploadRequest::toMap() const{
-    return {
 
-    };
-}
+
 
 
 #endif

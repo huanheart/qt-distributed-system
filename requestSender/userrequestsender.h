@@ -7,6 +7,7 @@
 #include"request/user/captcha.h"
 #include"request/user/login.h"
 #include"request/user/register.h"
+#include"../middleware/auth/Auth.h"
 
 #include"../response/jsonResponse.h"
 

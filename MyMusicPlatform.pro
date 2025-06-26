@@ -18,6 +18,7 @@ SOURCES += \
     request/user/register.cpp \
     requestSender/formdatarequestsender.cpp \
     requestSender/jsonRequestSender.cpp \
+    requestSender/musicrequestsender.cpp \
     requestSender/userrequestsender.cpp \
     response/jsonResponse.cpp \
     router/musicRouter.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     request/user/register.hpp \
     requestSender/formdatarequestsender.h \
     requestSender/jsonRequestSender.h \
+    requestSender/musicrequestsender.h \
     requestSender/userrequestsender.h \
     response/jsonResponse.h \
     router/musicRouter.h \

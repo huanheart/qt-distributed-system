@@ -57,9 +57,11 @@ void userRequestSender::sendRegister(QString email, QString password, QString ca
             QString token = obj.value("token").toString();
             qDebug() << "用户ID：" << userId << ", token：" << token;
 
-            QMessageBox::information(parentWidget, "注册成功", "欢迎加入，您的用户ID是：" + QString::number(userId));
+            //将 token 和 userId 保存下来，用于后续请求
+            InformationManager::GetInstance()->setUserId(userId);
+            AuthManager::GetInstance()->setToken(token);
 
-            // todo:将 token 和 userId 保存下来，用于后续请求
+            QMessageBox::information(parentWidget, "注册成功", "欢迎加入，您的用户ID是：" + QString::number(userId));
 
         },
 
@@ -91,9 +93,12 @@ void userRequestSender::sendLogin(QString username,QString password){
             qint64 userId = obj.value("user_id").toVariant().toLongLong();
             QString token = obj.value("token").toString();
             qDebug() << "用户ID：" << userId << ", token：" << token;
-            QMessageBox::information(parentWidget, "登录成功", "欢迎：" + QString::number(userId)+"号用户" );
-            // todo:将 token 和 userId 保存下来，用于后续请求
 
+            //将 token 和 userId 保存下来，用于后续请求
+            InformationManager::GetInstance()->setUserId(userId);
+            AuthManager::GetInstance()->setToken(token);
+
+            QMessageBox::information(parentWidget, "登录成功", "欢迎：" + QString::number(userId)+"号用户" );
         },
 
         // 失败回调

@@ -7,6 +7,7 @@ void JsonRequestSender::sendPostRequest(const QUrl &url, const JsonRequest &requ
     //使用抽象方法
     QMap<QString, QVariant> map = request.toMap();
     QJsonObject obj;
+    //补充：QJsonObject 支持 QJsonValue::fromVariant 自动推导类型
     for (auto it = map.begin(); it != map.end(); ++it) {
         obj[it.key()] = QJsonValue::fromVariant(it.value());
     }

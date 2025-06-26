@@ -19,4 +19,19 @@ private:
 };
 
 
+class InformationManager{
+
+public:
+    static InformationManager* GetInstance() {
+        static InformationManager instance;
+        return &instance;
+    }
+    void setUserId(int user_id);
+    int GetUserId();
+
+private:
+    int user_id;
+};
+
+
 #endif

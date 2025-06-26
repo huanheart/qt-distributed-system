@@ -7,20 +7,15 @@
 class MusicDownloadRequest : public JsonRequest{
 
 public:
-    MusicDownloadRequest(){
+    MusicDownloadRequest()=default;
 
-    }
     QMap<QString,QVariant> toMap() const override;
+    void setRequest(QString file_id);
 private:
-
+    QString file_id;
 };
 
-//todo:待封装
-QMap<QString,QVariant> MusicDownloadRequest::toMap() const{
-    return {
 
-    };
-}
 
 
 #endif

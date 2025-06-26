@@ -2,6 +2,25 @@
 #define FORMDATAREQUESTSENDER_H
 
 #include <QObject>
+#include<QHttpMultiPart>
+#include<QFile>
+#include<QString>
+#include<QMap>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
+#include <QVariant>
+#include <QMap>
+#include<QUrlQuery>
+#include<QFileInfo>
+#include<QNetworkRequest>
+
+
+#include"../middleware/auth/Auth.h"
+#include"../request/formDataRequest.hpp"
 
 class FormDataRequestSender : public QObject
 {
@@ -15,16 +34,10 @@ public:
     using FailureCallback = std::function<void(const QString &)>;
 
     //封装post请求，
-    void sendPostRequest(const QUrl &url, const JsonRequest &request,SuccessCallback onSuccess,FailureCallback onFail);
+    void sendPostRequest(const QUrl &url, const FormDataRequest &request,
+                         SuccessCallback onSuccess,FailureCallback onFailure,
+                         const QString &fileFieldName,const QString &filePath);
 
-    void sendPostRequest(
-        const QUrl &url,
-        const QString &fileFieldName,
-        const QStringList &filePaths,
-        const QMap<QString, QVariant> &formFields,
-        std::function<void(const QByteArray&)> onSuccess,
-        std::function<void(const QString&)> onFail
-        );
 
 public:
 

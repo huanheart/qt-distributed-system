@@ -84,6 +84,27 @@
        </widget>
       </item>
       <item>
+       <widget class="QLineEdit" name="file_id">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="upload">
+        <property name="text">
+         <string>上传文件</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="download">
+        <property name="text">
+         <string>下载文件</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
