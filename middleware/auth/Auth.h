@@ -29,8 +29,17 @@ public:
     void setUserId(int user_id);
     int GetUserId();
 
+    void setFileID(QString file_id);
+    QString GetFileID();
+
+    void setHttpFilePath(QString http_file_path);
+    QString GetHttpFilePath();
+
 private:
     int user_id;
+    QString file_id;
+    QString http_file_path;
+
 };
 
 

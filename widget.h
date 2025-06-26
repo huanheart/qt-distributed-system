@@ -19,6 +19,8 @@
 #include"router/router.h"
 
 #include"requestSender/userrequestsender.h"
+#include"requestSender/musicrequestsender.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -37,6 +39,8 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
     userRequestSender* user_sender=nullptr;
+
+    musicRequestSender* music_sender=nullptr;
 
 private slots:
     void on_login_clicked();

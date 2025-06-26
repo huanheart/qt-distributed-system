@@ -13,7 +13,7 @@
 #include <QMap>
 #include<QUrlQuery>
 
-
+#include"../middleware/auth/Auth.h"
 #include"../request/jsonRequest.hpp"
 
 class JsonRequestSender :public QObject{

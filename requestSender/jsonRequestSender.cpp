@@ -17,6 +17,13 @@ void JsonRequestSender::sendPostRequest(const QUrl &url, const JsonRequest &requ
     QNetworkRequest req(url);
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
+    //需要设置token
+    QString token = AuthManager::GetInstance()->getToken();  // 自己实现的 token 管理器
+    if (!token.isEmpty()) {
+        req.setRawHeader("Authorization", "Bearer " + token.toUtf8());
+        qDebug()<<"post request token is: "+token;
+    }
+
     //发送post请求
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QNetworkReply *reply = manager->post(req, jsonData);
@@ -48,8 +55,17 @@ void JsonRequestSender::sendGetRequest(const QUrl &url, const JsonRequest &reque
     urlWithParams.setQuery(query);
 
     QNetworkRequest req(urlWithParams);
+
+    //需要设置token
+    QString token = AuthManager::GetInstance()->getToken();  // 自己实现的 token 管理器
+    if (!token.isEmpty()) {
+        req.setRawHeader("Authorization", "Bearer " + token.toUtf8());
+        qDebug()<<"Get request token is: "+token;
+    }
+
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     QNetworkReply *reply = manager->get(req);
+
 
     connect(reply, &QNetworkReply::finished, this, [this, reply, onSuccess, onFail]() {
         if (reply->error() == QNetworkReply::NoError) {

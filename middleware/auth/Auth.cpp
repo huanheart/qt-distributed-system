@@ -18,3 +18,22 @@ void InformationManager::setUserId(int user_id){
 int InformationManager::GetUserId(){
     return user_id;
 }
+
+void InformationManager::setFileID(QString file_id){
+    this->file_id=file_id;
+}
+
+QString InformationManager::GetFileID(){
+    return file_id;
+}
+
+
+void InformationManager::setHttpFilePath(QString http_file_path){
+    this->http_file_path=http_file_path;
+}
+
+QString InformationManager::GetHttpFilePath(){
+    return this->http_file_path;
+}
+
+
