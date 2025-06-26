@@ -8,6 +8,7 @@
 #include"request/user/login.h"
 #include"request/user/register.h"
 
+#include"../response/jsonResponse.h"
 
 #include"jsonRequestSender.h"
 

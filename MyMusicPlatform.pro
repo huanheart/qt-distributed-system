@@ -10,19 +10,24 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    middleware/auth/Auth.cpp \
     request/music/musicDownload.cpp \
     request/music/musicUpload.cpp \
     request/user/captcha.cpp \
     request/user/login.cpp \
     request/user/register.cpp \
+    requestSender/formdatarequestsender.cpp \
     requestSender/jsonRequestSender.cpp \
     requestSender/userrequestsender.cpp \
+    response/jsonResponse.cpp \
     router/musicRouter.cpp \
     router/router.cpp \
     router/userRouter.cpp \
     widget.cpp
 
 HEADERS += \
+    middleware/auth/Auth.h \
+    request/formDataRequest.hpp \
     request/jsonRequest.hpp \
     request/music/musicDownload.h \
     request/music/musicUpload.h \
@@ -31,8 +36,10 @@ HEADERS += \
     request/user/login.hpp \
     request/user/register.h \
     request/user/register.hpp \
+    requestSender/formdatarequestsender.h \
     requestSender/jsonRequestSender.h \
     requestSender/userrequestsender.h \
+    response/jsonResponse.h \
     router/musicRouter.h \
     router/router.h \
     router/userRouter.h \

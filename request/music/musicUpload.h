@@ -1,17 +1,22 @@
 #ifndef MUSICUPLOAD_H
 #define MUSICUPLOAD_H
 
-#include "../jsonRequest.hpp"
+#include "../formDataRequest.hpp"
 
 
-class MusicUploadRequest : public JsonRequest{
+class MusicUploadRequest : public FormDataRequest{
 
 public:
-    MusicUploadRequest(){
+    MusicUploadRequest()=default;
 
-    }
     QMap<QString,QVariant> toMap() const override;
+
+public:
+    //存放对应的指定文件路径
+
 private:
+    //存放指定字段，但是上传
+
 
 };
 
