@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    func/music/musicPlayer.cpp \
     main.cpp \
     middleware/auth/Auth.cpp \
     request/music/musicDownload.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
     widget.cpp
 
 HEADERS += \
+    func/music/musicPlayer.h \
     middleware/auth/Auth.h \
     request/formDataRequest.hpp \
     request/jsonRequest.hpp \

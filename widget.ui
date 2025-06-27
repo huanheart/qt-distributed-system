@@ -105,6 +105,23 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="startMusic">
+        <property name="text">
+         <string>播放音乐</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="pos_line"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pos">
+        <property name="text">
+         <string>设置播放音乐地点</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>

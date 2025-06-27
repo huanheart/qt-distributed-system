@@ -38,7 +38,7 @@ QString Router::GetLoginPath(){
     return GetRouterPath()+userRouter::GetInstance()->GetLoginPath();
 }
 QString Router::GetCaptchaPath(){
-    qDebug()<<GetRouterPath()+userRouter::GetInstance()->GetCaptchaPath();
+//    qDebug()<<GetRouterPath()+userRouter::GetInstance()->GetCaptchaPath();
     return GetRouterPath()+userRouter::GetInstance()->GetCaptchaPath();
 }
 
@@ -49,3 +49,9 @@ QString Router::GetMusicUploadPath(){
 QString Router::GetMusicDownloadPath(){
     return GetRouterPath()+musicRouter::GetInstance()->GetMusicDownloadPath();
 }
+
+QString Router::GetMusicStreamPath(){
+    //   http://192.168.15.1:8000/api/v1/music/stream
+    return GetRouterPath()+musicRouter::GetInstance()->GetMusicStreamPath();
+}
+

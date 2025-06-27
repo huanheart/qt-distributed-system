@@ -11,3 +11,8 @@ QString musicRouter::GetMusicUploadPath(){
 QString musicRouter::GetMusicDownloadPath(){
     return music_path+music_download_path;
 }
+
+
+QString musicRouter::GetMusicStreamPath(){
+    return music_path+music_stream_path;
+}

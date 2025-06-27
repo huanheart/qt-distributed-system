@@ -7,6 +7,11 @@
 #include<QPushButton>
 #include<QMessageBox>
 
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QUrl>
+#include <QDebug>
+
 
 #include"request/user/captcha.h"
 #include"request/user/login.h"
@@ -20,6 +25,8 @@
 
 #include"requestSender/userrequestsender.h"
 #include"requestSender/musicrequestsender.h"
+
+#include"func/music/musicPlayer.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -42,6 +49,8 @@ public:
 
     musicRequestSender* music_sender=nullptr;
 
+    void playRemoteMusic(const QString &fileID);
+
 private slots:
     void on_login_clicked();
 
@@ -54,7 +63,14 @@ private slots:
 
     void on_upload_clicked();
 
+    void on_startMusic_clicked();
+
+    void on_pos_clicked();
+
 private:
     Ui::Widget *ui;
+
+    MusicPlayer *player;
+
 };
 #endif // WIDGET_H

@@ -18,7 +18,7 @@ void Widget::init(){
     ui->file_id->setPlaceholderText("请输入指定的file_id");
     user_sender=new userRequestSender(this);
     music_sender=new musicRequestSender(this);
-
+    player = new MusicPlayer(this);
 }
 
 Widget::~Widget()
@@ -26,49 +26,18 @@ Widget::~Widget()
     delete ui;
 }
 
+
+
+
 //下面信号槽都是当前测试接口用的
-//void downloadFile(const QUrl &fileUrl, const QString &savePath, QObject *context = nullptr) {
-//    QNetworkAccessManager *manager = new QNetworkAccessManager(context);
-//    QNetworkRequest request(fileUrl);
-//    QNetworkReply *reply = manager->get(request);
+void Widget::playRemoteMusic(const QString &fileID) {
 
-//    QFile *file = new QFile(savePath);
-//    if (!file->open(QIODevice::WriteOnly)) {
-//        qWarning() << "无法打开保存路径：" << savePath;
-//        QMessageBox::warning(nullptr, "错误", "无法打开文件路径进行保存！");
-//        delete file;
-//        manager->deleteLater();
-//        return;
-//    }
-
-//    // 写入数据
-//    QObject::connect(reply, &QNetworkReply::readyRead, context, [=]() {
-//        file->write(reply->readAll());
-//    });
-
-//    // 完成处理
-//    QObject::connect(reply, &QNetworkReply::finished, context, [=]() {
-//        file->flush();
-//        file->close();
-//        file->deleteLater();
-
-//        if (reply->error() == QNetworkReply::NoError) {
-//            qDebug() << "下载成功：" << savePath;
-//            QMessageBox::information(nullptr, "下载完成", "文件下载成功！");
-//        } else {
-//            qDebug() << "下载失败：" << reply->errorString();
-//            QMessageBox::warning(nullptr, "下载失败", reply->errorString());
-//        }
-
-//        reply->deleteLater();
-//        manager->deleteLater();
-//    });
-//}
-
-
-
-
-
+    player->setFileId(fileID);
+    //这边先不用设置回调了，直接进行播放就可以了
+//    player->setSuccessFunc();
+//    player->setFailFunc();
+    player->startPlay();  // 开始播放
+}
 
 
 void Widget::on_login_clicked()
@@ -98,6 +67,20 @@ void Widget::on_download_clicked()
 
 void Widget::on_upload_clicked()
 {
-    music_sender->sendMusicUpload("D:\\qt_wen_jian_mu_lu\\MyMusicPlatform\\photo\\test.png");
+//    music_sender->sendMusicUpload("D:\\qt_wen_jian_mu_lu\\MyMusicPlatform\\photo\\test.png");
+    music_sender->sendMusicUpload("D:\\CloudMusic\\music.mp3");
+}
+
+//测试对应播放音乐的接口
+void Widget::on_startMusic_clicked()
+{
+    playRemoteMusic(ui->file_id->text());
+
+}
+
+
+void Widget::on_pos_clicked()
+{
+    player->setPosition(ui->pos_line->text().toInt());
 }
 

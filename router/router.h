@@ -24,6 +24,7 @@ class Router
 {
 public:
     QString GetRouterPath(){
+//        http://192.168.15.1:8000/api/v1
         return server_ip+":"+QString::number(port)+version;
     }
     //用户相关api
@@ -33,7 +34,7 @@ public:
     //音乐相关api
     QString GetMusicUploadPath();
     QString GetMusicDownloadPath();
-
+    QString GetMusicStreamPath();
 
     static Router* GetInstance(){
         static Router r;
