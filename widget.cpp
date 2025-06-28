@@ -60,22 +60,22 @@ void Widget::on_captcha_clicked()
 
 void Widget::on_download_clicked()
 {
-    music_sender->sendMusicDownload(InformationManager::GetInstance()->GetFileID() );
+    QString save_path="D:\\qt_wen_jian_mu_lu\\MyMusicPlatform\\request\\";
+    music_sender->sendMusicDownload(InformationManager::GetInstance()->GetFileID(),save_path);
     //然后我们需要进行一个下载操作，我们先将其保存到全局变量中，后续将其渲染到对应的界面上去
 }
 
 
 void Widget::on_upload_clicked()
 {
-//    music_sender->sendMusicUpload("D:\\qt_wen_jian_mu_lu\\MyMusicPlatform\\photo\\test.png");
-    music_sender->sendMusicUpload("D:\\CloudMusic\\music.mp3");
+    QString music_path="D:\\CloudMusic\\ttt.mp3";
+    music_sender->sendMusicUpload(music_path);
 }
 
 //测试对应播放音乐的接口
 void Widget::on_startMusic_clicked()
 {
     playRemoteMusic(ui->file_id->text());
-
 }
 
 

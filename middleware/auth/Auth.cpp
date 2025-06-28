@@ -33,7 +33,7 @@ void InformationManager::setHttpFilePath(QString http_file_path){
 }
 
 QString InformationManager::GetHttpFilePath(){
-    return this->http_file_path;
+    return "http://"+this->http_file_path;
 }
 
 

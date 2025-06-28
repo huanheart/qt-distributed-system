@@ -16,6 +16,8 @@
 
 #include"router/router.h"
 
+#include"../func/music/musicfunc.h"
+#include"../func/utils/utils.h"
 
 class musicRequestSender : public QObject
 {
@@ -23,7 +25,7 @@ class musicRequestSender : public QObject
 public:
     explicit musicRequestSender(QObject *parent = nullptr);
 
-    void sendMusicDownload(QString file_id);
+    void sendMusicDownload(QString file_id,QString save_path);
 
     void sendMusicUpload(QString file_path);
 

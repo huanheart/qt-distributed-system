@@ -10,6 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     func/music/musicPlayer.cpp \
+    func/music/musicfunc.cpp \
+    func/utils/utils.cpp \
     main.cpp \
     middleware/auth/Auth.cpp \
     request/music/musicDownload.cpp \
@@ -29,6 +31,8 @@ SOURCES += \
 
 HEADERS += \
     func/music/musicPlayer.h \
+    func/music/musicfunc.h \
+    func/utils/utils.h \
     middleware/auth/Auth.h \
     request/formDataRequest.hpp \
     request/jsonRequest.hpp \
