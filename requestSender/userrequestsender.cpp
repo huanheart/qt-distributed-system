@@ -105,4 +105,38 @@ void userRequestSender::sendLogin(QString username,QString password){
     );
 }
 
+void userRequestSender::sendLike(QString file_id){
+    UserLikeRequest request;
+    request.setRequest(file_id);
+
+    //发送请求
+    sender->sendPostRequest(
+        Router::GetInstance()->GetLikePath(),
+        request,
+
+        // 成功回调
+        [this](const QByteArray &data) {
+            JsonResponse response;
+            QString error_msg="";
+            QJsonObject obj=response.parse(data,error_msg);
+            if(error_msg!=""){
+                QMessageBox::warning(parentWidget, "错误", "点赞失败：" +error_msg);
+                return ;
+            }
+
+            qint64 LikeCnt = obj.value("like_count").toVariant().toLongLong();
+            qint64 LikeStatus = obj.value("like_status").toVariant().toLongLong();
+
+            //todo:后续需要发送信号/便于渲染到界面中
+            qDebug()<<"likeCnt is "<<LikeCnt<<" and LikeStatus is "<<LikeStatus;
+
+            QMessageBox::information(parentWidget, "点赞成功", "点赞成功");
+        },
+
+        // 失败回调
+        [this](const QString &error) {
+            QMessageBox::warning(parentWidget, "点赞请求失败", "网络错误：" + error);
+        }
+    );
+}
 

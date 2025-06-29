@@ -36,6 +36,10 @@ public:
     QString GetMusicDownloadPath();
     QString GetMusicStreamPath();
 
+    //用户登录之后相关api
+    QString GetLikePath();
+
+
     static Router* GetInstance(){
         static Router r;
         return &r;

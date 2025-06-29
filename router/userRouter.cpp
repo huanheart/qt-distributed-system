@@ -14,3 +14,7 @@ QString userRouter::GetCaptchaPath(){
     return user_path+captcha_path;
 }
 
+QString userRouter::GetLikePath(){
+    return login_path+like_path;
+}
+

@@ -7,6 +7,9 @@
 #include"request/user/captcha.h"
 #include"request/user/login.h"
 #include"request/user/register.h"
+#include"request/user/like.h"
+
+
 #include"../middleware/auth/Auth.h"
 
 #include"../response/jsonResponse.h"
@@ -29,6 +32,9 @@ public:
 
     //发送登录申请
     void sendLogin(QString username,QString password);
+
+    //为某一个音乐点赞
+    void sendLike(QString file_id);
 
 private:
     JsonRequestSender* sender;
