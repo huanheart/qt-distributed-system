@@ -120,7 +120,7 @@ void userRequestSender::sendLike(QString file_id){
             QString error_msg="";
             QJsonObject obj=response.parse(data,error_msg);
             if(error_msg!=""){
-                QMessageBox::warning(parentWidget, "错误", "点赞失败：" +error_msg);
+                QMessageBox::warning(parentWidget, "错误", "点赞/取消点赞 失败：" +error_msg);
                 return ;
             }
 
@@ -130,12 +130,12 @@ void userRequestSender::sendLike(QString file_id){
             //todo:后续需要发送信号/便于渲染到界面中
             qDebug()<<"likeCnt is "<<LikeCnt<<" and LikeStatus is "<<LikeStatus;
 
-            QMessageBox::information(parentWidget, "点赞成功", "点赞成功");
+            QMessageBox::information(parentWidget, "点赞/取消点赞成功", "点赞/取消点赞成功");
         },
 
         // 失败回调
         [this](const QString &error) {
-            QMessageBox::warning(parentWidget, "点赞请求失败", "网络错误：" + error);
+            QMessageBox::warning(parentWidget, "点赞/取消点赞请求失败", "网络错误：" + error);
         }
     );
 }

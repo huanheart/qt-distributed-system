@@ -22,7 +22,6 @@ private:
     //顶级目录
     QString user_path="/user";
     //登录之后相关用户的目录
-    QString login_path="/login";
 private:
     QString register_path="/register";
     QString login_path="/login";

@@ -84,3 +84,9 @@ void Widget::on_pos_clicked()
     player->setPosition(ui->pos_line->text().toInt());
 }
 
+
+void Widget::on_like_clicked()
+{
+    user_sender->sendLike(ui->file_id->text());
+}
+

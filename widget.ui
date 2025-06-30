@@ -122,6 +122,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="like">
+        <property name="text">
+         <string>对指定file_id点赞</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>

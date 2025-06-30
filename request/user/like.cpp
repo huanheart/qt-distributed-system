@@ -1,14 +1,14 @@
 
-#include"captcha.h"
+#include "like.h"
 
-QMap<QString,QVariant> UserCaptchaRequest::toMap() const{
+QMap<QString,QVariant> UserLikeRequest::toMap() const{
     return {
-        {"email", email}
+        {"file_id", file_id}
     };
 }
 
-void UserCaptchaRequest::setRequest(QString email){
-    this->email=email;
+void UserLikeRequest::setRequest(QString file_id){
+    this->file_id=file_id;
 }
 
 
