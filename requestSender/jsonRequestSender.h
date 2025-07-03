@@ -12,6 +12,7 @@
 #include <QVariant>
 #include <QMap>
 #include<QUrlQuery>
+#include<QJsonArray>
 
 #include"../middleware/auth/Auth.h"
 #include"../request/jsonRequest.hpp"

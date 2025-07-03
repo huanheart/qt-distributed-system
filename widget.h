@@ -69,6 +69,8 @@ private slots:
 
     void on_like_clicked();
 
+    void on_HotData_clicked();
+
 private:
     Ui::Widget *ui;
 

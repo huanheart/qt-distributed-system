@@ -1,7 +1,6 @@
 
 #include"musicDownload.h"
 
-//todo:待封装
 QMap<QString,QVariant> MusicDownloadRequest::toMap() const{
     return {
         {"file_id", file_id}

@@ -35,6 +35,8 @@ public:
     QString GetMusicUploadPath();
     QString GetMusicDownloadPath();
     QString GetMusicStreamPath();
+    QString GetHotMusicPath();
+
 
     //用户登录之后相关api
     QString GetLikePath();

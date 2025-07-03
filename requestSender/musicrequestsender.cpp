@@ -1,5 +1,7 @@
 #include "musicrequestsender.h"
 
+
+
 musicRequestSender::musicRequestSender(QObject *parent)
     : QObject{parent},parentWidget(qobject_cast<QWidget *>(parent))
 {
@@ -75,6 +77,39 @@ void musicRequestSender::sendMusicUpload(QString file_path){
         },
         file_name,
         file_path);
+}
+
+void musicRequestSender::sendGetHotMusic(){
+    HotMusicRequest request;
+    request.setRequest();
+
+    json_sender->sendGetRequest(
+        Router::GetInstance()->GetHotMusicPath(),
+        request,
+        [this](const QByteArray &data) {
+            JsonResponse response;
+            QString error_msg="";
+            QJsonObject obj=response.parse(data,error_msg);
+            if(error_msg!=""){
+                QMessageBox::warning(parentWidget, "错误", "获取热门数据失败：" +error_msg);
+                return ;
+            }
+            //开始获取这个json数组数据
+            QJsonArray musicListArray = obj["music_list"].toArray();
+            // 遍历音乐列表
+            for (const QJsonValue &value : musicListArray) {
+                QJsonObject musicObj = value.toObject();
+                QString filePath = musicObj["file_path"].toString();
+                int likeCount = musicObj["like_count"].toInt();
+
+                qDebug() << "File Path:" << filePath;
+                qDebug() << "Like Count:" << likeCount;
+            }
+        },
+        [this](const QString &error) {
+            QMessageBox::warning(parentWidget, "请求失败", "网络错误：" + error);
+        });
+
 }
 
 

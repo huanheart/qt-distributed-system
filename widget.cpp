@@ -90,3 +90,9 @@ void Widget::on_like_clicked()
     user_sender->sendLike(ui->file_id->text());
 }
 
+
+void Widget::on_HotData_clicked()
+{
+    music_sender->sendGetHotMusic();
+}
+

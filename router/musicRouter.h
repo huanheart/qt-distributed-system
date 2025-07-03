@@ -17,6 +17,7 @@ public:
     QString GetMusicUploadPath();
     QString GetMusicDownloadPath();
     QString GetMusicStreamPath();
+    QString GetHotMusicPath();
 
 private:
     //顶级目录
@@ -27,6 +28,8 @@ private:
     QString music_download_path="/music_download";
 
     QString music_stream_path="/stream";
+
+    QString hot_music_path="/rankings";
 
 private:
 

@@ -14,6 +14,7 @@ SOURCES += \
     func/utils/utils.cpp \
     main.cpp \
     middleware/auth/Auth.cpp \
+    request/music/hotMusic.cpp \
     request/music/musicDownload.cpp \
     request/music/musicUpload.cpp \
     request/user/captcha.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     middleware/auth/Auth.h \
     request/formDataRequest.hpp \
     request/jsonRequest.hpp \
+    request/music/hotMusic.h \
     request/music/musicDownload.h \
     request/music/musicUpload.h \
     request/user/captcha.h \

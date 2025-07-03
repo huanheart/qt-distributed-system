@@ -17,7 +17,7 @@
 #include<QUrlQuery>
 #include<QFileInfo>
 #include<QNetworkRequest>
-
+#include<QJsonArray>
 
 #include"../middleware/auth/Auth.h"
 #include"../request/formDataRequest.hpp"

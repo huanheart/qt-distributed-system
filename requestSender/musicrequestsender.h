@@ -8,6 +8,8 @@
 
 #include"request/music/musicDownload.h"
 #include"request/music/musicUpload.h"
+#include"request/music/hotMusic.h"
+
 
 #include"../response/jsonResponse.h"
 
@@ -28,6 +30,8 @@ public:
     void sendMusicDownload(QString file_id,QString save_path);
 
     void sendMusicUpload(QString file_path);
+
+    void sendGetHotMusic();
 
 signals:
 
