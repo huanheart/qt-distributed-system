@@ -29,7 +29,9 @@ SOURCES += \
     router/musicRouter.cpp \
     router/router.cpp \
     router/userRouter.cpp \
-    widget.cpp
+    widget.cpp \
+    window/LoginWindow/loginwindow.cpp \
+    window/Register/registerwindow.cpp
 
 HEADERS += \
     func/music/musicPlayer.h \
@@ -55,10 +57,14 @@ HEADERS += \
     router/musicRouter.h \
     router/router.h \
     router/userRouter.h \
-    widget.h
+    widget.h \
+    window/LoginWindow/loginwindow.h \
+    window/Register/registerwindow.h
 
 FORMS += \
-    widget.ui
+    widget.ui \
+    window/LoginWindow/loginwindow.ui \
+    window/Register/registerwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
