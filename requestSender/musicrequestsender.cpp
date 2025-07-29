@@ -22,7 +22,7 @@ void musicRequestSender::sendMusicDownload(QString file_id,QString save_path){
             QString error_msg="";
             QJsonObject obj=response.parse(data,error_msg);
             if(error_msg!=""){
-                QMessageBox::warning(parentWidget, "错误", "下载音乐文件：" +error_msg);
+                emit sendMusicDownloadInformation(false,"下载音乐文件错误：" +error_msg);
                 return ;
             }
             //获取文件路径
@@ -32,11 +32,11 @@ void musicRequestSender::sendMusicDownload(QString file_id,QString save_path){
             //使用前一定要绑定需要用到这个对象的窗口，这样才能进行弹窗
             MusicFunc::GetInstance()->setMusicParent(parentWidget);
             MusicFunc::GetInstance()->downloadFile(InformationManager::GetInstance()->GetHttpFilePath(),file_id,save_path);
-
-            QMessageBox::information(parentWidget, "成功", "该文件的地址为: " +file_path);
+//            QMessageBox::information(parentWidget, "成功", "该文件的地址为: " +file_path);
+            emit sendMusicDownloadInformation(true,"成功,该文件的地址为: " +file_path);
         },
         [this](const QString &error) {
-            QMessageBox::warning(parentWidget, "请求失败", "网络错误：" + error);
+            emit sendMusicDownloadInformation(false,"网络错误：" + error);
         });
 
 }
@@ -45,7 +45,7 @@ void musicRequestSender::sendMusicUpload(QString file_path){
 
     //先对路径进行合法性校验
     if(false==Util::GetInstance()->isMusicFile(file_path) ){
-        QMessageBox::warning(parentWidget, "错误", "不能上传除音乐文件之外的文件");
+        emit sendMusicUploadInformation(false,"错误,不能上传除音乐文件之外的文件");
         return ;
     }
 
@@ -61,19 +61,17 @@ void musicRequestSender::sendMusicUpload(QString file_path){
             QString error_msg="";
             QJsonObject obj=response.parse(data,error_msg);
             if(error_msg!=""){
-                QMessageBox::warning(parentWidget, "错误", "上传音乐文件请求失败：" +error_msg);
+                emit sendMusicUploadInformation(false,"上传音乐文件请求失败：" +error_msg);
                 return ;
             }
-
             //获取file_id
             QString file_id = obj.value("file_id").toString();
             InformationManager::GetInstance()->setFileID(file_id);
-
-            QMessageBox::information(parentWidget, "成功", "开始上传音乐文件音乐文件！");
+            emit sendMusicUploadInformation(true,"成功,开始上传音乐文件音乐文件！");
         },
         // 失败回调
         [this](const QString &error) {
-            QMessageBox::warning(parentWidget, "请求失败", "网络错误：" + error);
+            emit sendMusicUploadInformation(false,"网络错误：" + error);
         },
         file_name,
         file_path);
@@ -91,7 +89,8 @@ void musicRequestSender::sendGetHotMusic(){
             QString error_msg="";
             QJsonObject obj=response.parse(data,error_msg);
             if(error_msg!=""){
-                QMessageBox::warning(parentWidget, "错误", "获取热门数据失败：" +error_msg);
+//                QMessageBox::warning(parentWidget, "错误", "获取热门数据失败：" +error_msg);
+                emit sendGetHotMusicInformation(false,"获取热门数据失败：" +error_msg,QJsonArray());
                 return ;
             }
             //开始获取这个json数组数据
@@ -105,9 +104,10 @@ void musicRequestSender::sendGetHotMusic(){
                 qDebug() << "File Path:" << filePath;
                 qDebug() << "Like Count:" << likeCount;
             }
+            emit sendGetHotMusicInformation(true,"获取热门数据成功",musicListArray);
         },
         [this](const QString &error) {
-            QMessageBox::warning(parentWidget, "请求失败", "网络错误：" + error);
+            emit sendGetHotMusicInformation(false,"网络错误：" + error,QJsonArray());
         });
 
 }

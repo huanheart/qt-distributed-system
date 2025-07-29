@@ -31,7 +31,8 @@ SOURCES += \
     router/userRouter.cpp \
     widget.cpp \
     window/LoginWindow/loginwindow.cpp \
-    window/Register/registerwindow.cpp
+    window/Register/registerwindow.cpp \
+    window/WindowManager.cpp
 
 HEADERS += \
     func/music/musicPlayer.h \
@@ -59,7 +60,8 @@ HEADERS += \
     router/userRouter.h \
     widget.h \
     window/LoginWindow/loginwindow.h \
-    window/Register/registerwindow.h
+    window/Register/registerwindow.h \
+    window/WindowManager.h
 
 FORMS += \
     widget.ui \

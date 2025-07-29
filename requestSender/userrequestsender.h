@@ -36,11 +36,19 @@ public:
     //为某一个音乐点赞
     void sendLike(QString file_id);
 
+signals:
+    void sendCaptchaInformation(bool ok,QString message);
+
+    void sendRegisterInformation(bool ok,QString message);
+
+    void sendLoginInformation(bool ok,QString message);
+
+    void sendLikeInformation(bool ok,QString message);
 private:
     JsonRequestSender* sender;
 //使用发送器的那个窗口类
     QWidget* parentWidget;
-signals:
+
 
 };
 

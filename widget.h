@@ -41,15 +41,21 @@ private:
     void init();
 
 private:
-
-public:
     Widget(QWidget *parent = nullptr);
+public:
+    static Widget* GetMainWindow() {
+        static Widget instance;
+        return &instance;
+    }
+
     ~Widget();
     userRequestSender* user_sender=nullptr;
 
     musicRequestSender* music_sender=nullptr;
 
     void playRemoteMusic(const QString &fileID);
+
+signals:
 
 private slots:
     void on_login_clicked();

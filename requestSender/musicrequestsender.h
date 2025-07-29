@@ -34,7 +34,11 @@ public:
     void sendGetHotMusic();
 
 signals:
+    void sendMusicDownloadInformation(bool ok,QString message);
 
+    void sendMusicUploadInformation(bool ok,QString message);
+
+    void sendGetHotMusicInformation(bool ok,QString message,QJsonArray musicListArray);
 
 private:
     //由于它需要请求form-data的相关接口
