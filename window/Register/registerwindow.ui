@@ -39,7 +39,7 @@
       <item>
        <widget class="QLineEdit" name="username">
         <property name="text">
-         <string>邮箱</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -61,7 +61,7 @@
          <item>
           <widget class="QLineEdit" name="cap">
            <property name="text">
-            <string>验证码</string>
+            <string/>
            </property>
           </widget>
          </item>

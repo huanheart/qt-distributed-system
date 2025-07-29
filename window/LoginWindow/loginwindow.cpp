@@ -9,7 +9,8 @@ LoginWindow::LoginWindow(QWidget *parent) :
     user_sender=new userRequestSender(this);
 
     connect(user_sender,&userRequestSender::sendLoginInformation,this,LoginWindow::DealLogin);
-
+    ui->username->setPlaceholderText("请输入账号/邮箱");
+    ui->passwd->setPlaceholderText("请输入密码");
 }
 
 LoginWindow::~LoginWindow()

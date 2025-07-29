@@ -8,13 +8,13 @@ WindowManager::WindowManager(){
 
     //登录widget绑定的connect
     connect(LoginWindow::GetLoginWindow(), &LoginWindow::DisplayRegisterWindow,
-            this, &WindowManager::DisplayLoginWindow);
+            this, &WindowManager::DisplayRegisterWindow);
     connect(LoginWindow::GetLoginWindow(),&LoginWindow::DisplayMainWindow,
             this,&WindowManager::DisplayMainWindow);
 
     //注册widget绑定的connect
     connect(RegisterWindow::GetRegisterWindow(),&RegisterWindow::DisplayLoginWindow,
-            this,&WindowManager::DisplayRegisterWindow);
+            this,&WindowManager::DisplayLoginWindow);
 
     connect(RegisterWindow::GetRegisterWindow(),&RegisterWindow::DisplayMainWindow,
             this,&WindowManager::DisplayMainWindow);

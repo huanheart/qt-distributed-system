@@ -18,6 +18,7 @@ public:
     void DisplayLoginWindow();
     //展示注册界面
     void DisplayRegisterWindow();
+    void DisplayMainWindow();
 
 private:
     //隐藏所有界面

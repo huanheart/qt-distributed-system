@@ -11,7 +11,9 @@ RegisterWindow::RegisterWindow(QWidget *parent) :
     connect(user_sender,&userRequestSender::sendCaptchaInformation,this,RegisterWindow::DealCaptcha);
 
     connect(user_sender,&userRequestSender::sendRegisterInformation,this,RegisterWindow::DealRegister);
-
+    ui->username->setPlaceholderText("请输入账号/邮箱");
+    ui->passwd->setPlaceholderText("请输入密码");
+    ui->cap->setPlaceholderText("请输入验证码");
 
 }
 
