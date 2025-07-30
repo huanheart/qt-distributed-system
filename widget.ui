@@ -173,7 +173,7 @@
   <customwidget>
    <class>LeftList</class>
    <extends>QWidget</extends>
-   <header location="global">LeftList.h</header>
+   <header location="global">window/Main/LeftList.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
