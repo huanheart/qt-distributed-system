@@ -31,6 +31,8 @@ SOURCES += \
     router/userRouter.cpp \
     widget.cpp \
     window/LoginWindow/loginwindow.cpp \
+    window/Main/LeftList.cpp \
+    window/Main/temp.cpp \
     window/Register/registerwindow.cpp \
     window/WindowManager.cpp
 
@@ -60,12 +62,15 @@ HEADERS += \
     router/userRouter.h \
     widget.h \
     window/LoginWindow/loginwindow.h \
+    window/Main/LeftList.h \
+    window/Main/temp.h \
     window/Register/registerwindow.h \
     window/WindowManager.h
 
 FORMS += \
     widget.ui \
     window/LoginWindow/loginwindow.ui \
+    window/Main/LeftList.ui \
     window/Register/registerwindow.ui
 
 # Default rules for deployment.

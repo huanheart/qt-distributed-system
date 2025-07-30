@@ -29,6 +29,10 @@
 #include"func/music/musicPlayer.h"
 
 
+//子窗口
+#include"window/Main/LeftList.h"
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
