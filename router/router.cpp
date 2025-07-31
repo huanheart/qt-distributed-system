@@ -59,6 +59,10 @@ QString Router::GetHotMusicPath(){
     return GetRouterPath()+musicRouter::GetInstance()->GetHotMusicPath();
 }
 
+QString Router::GetMusicInfosPath(){
+    return GetRouterPath()+musicRouter::GetInstance()->GetMusicInfosPath();
+}
+
 //登录之后相关用户api
 QString Router::GetLikePath(){
     return GetRouterPath()+userRouter::GetInstance()->GetLikePath();

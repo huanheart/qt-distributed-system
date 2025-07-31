@@ -21,3 +21,8 @@ QString musicRouter::GetMusicStreamPath(){
 QString musicRouter::GetHotMusicPath(){
     return music_path+hot_music_path;
 }
+
+QString musicRouter::GetMusicInfosPath(){
+    return music_path+music_infos;
+}
+

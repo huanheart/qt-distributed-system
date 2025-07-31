@@ -55,6 +55,8 @@ void LeftList::setListT2(){
 
     QListWidgetItem *localMusic = new QListWidgetItem(ui->list2);
     localMusic->setText("本地音乐");
+
+
 }
 
 LeftList::~LeftList()

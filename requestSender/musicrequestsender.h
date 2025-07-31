@@ -9,7 +9,7 @@
 #include"request/music/musicDownload.h"
 #include"request/music/musicUpload.h"
 #include"request/music/hotMusic.h"
-
+#include"request/music/musicInfos.h"
 
 #include"../response/jsonResponse.h"
 
@@ -33,12 +33,17 @@ public:
 
     void sendGetHotMusic();
 
+    //todo:参数暂未确定，用于获取大于等于id的前cnt个字符
+    void sendGetMusicInfos(int id,int cnt);
+
 signals:
     void sendMusicDownloadInformation(bool ok,QString message);
 
     void sendMusicUploadInformation(bool ok,QString message);
 
     void sendGetHotMusicInformation(bool ok,QString message,QJsonArray musicListArray);
+    //todo:参数暂未确定，可能需要返回一个json数组，添加到使用者的map中，以及更新max_id
+    void sendGetMusicInfosInformation(bool ok,QString message,QJsonArray musicListArray);
 
 private:
     //由于它需要请求form-data的相关接口

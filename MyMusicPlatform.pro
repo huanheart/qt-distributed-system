@@ -16,6 +16,7 @@ SOURCES += \
     middleware/auth/Auth.cpp \
     request/music/hotMusic.cpp \
     request/music/musicDownload.cpp \
+    request/music/musicInfos.cpp \
     request/music/musicUpload.cpp \
     request/user/captcha.cpp \
     request/user/like.cpp \
@@ -32,7 +33,7 @@ SOURCES += \
     widget.cpp \
     window/LoginWindow/loginwindow.cpp \
     window/Main/LeftList.cpp \
-    window/Main/temp.cpp \
+    window/Main/findMusic.cpp \
     window/Register/registerwindow.cpp \
     window/WindowManager.cpp
 
@@ -45,6 +46,7 @@ HEADERS += \
     request/jsonRequest.hpp \
     request/music/hotMusic.h \
     request/music/musicDownload.h \
+    request/music/musicInfos.h \
     request/music/musicUpload.h \
     request/user/captcha.h \
     request/user/like.h \
@@ -63,7 +65,7 @@ HEADERS += \
     widget.h \
     window/LoginWindow/loginwindow.h \
     window/Main/LeftList.h \
-    window/Main/temp.h \
+    window/Main/findMusic.h \
     window/Register/registerwindow.h \
     window/WindowManager.h
 
@@ -71,6 +73,7 @@ FORMS += \
     widget.ui \
     window/LoginWindow/loginwindow.ui \
     window/Main/LeftList.ui \
+    window/Main/findMusic.ui \
     window/Register/registerwindow.ui
 
 # Default rules for deployment.

@@ -77,6 +77,52 @@ void musicRequestSender::sendMusicUpload(QString file_path){
         file_path);
 }
 
+
+void musicRequestSender::sendGetMusicInfos(int id,int cnt){
+    MusicInfosRequest request;
+    request.setRequest(id,cnt);
+    json_sender->sendGetRequest(
+        Router::GetInstance()->GetMusicInfosPath(),
+        request,
+        [this](const QByteArray &data) {
+            JsonResponse response;
+            QString error_msg="";
+            QJsonObject obj=response.parse(data,error_msg);
+            if(error_msg!=""){
+                emit sendGetMusicInfosInformation(false,"获取cnt条数据失败" +error_msg,QJsonArray());
+                return ;
+            }
+            //下面
+            QJsonArray musicListArray = obj["music_info_list"].toArray();
+
+            // 遍历音乐列表
+            for (const QJsonValue &value : musicListArray) {
+                QJsonObject musicObj = value.toObject();
+
+                QString uuid = musicObj["uuid"].toString();
+                qint64 userId = musicObj["user_id"].toVariant().toLongLong();
+                QString musicName = musicObj["music_name"].toString();
+                QString filePath = musicObj["file_path"].toString();
+                qint64 likeCount = musicObj["like_count"].toVariant().toLongLong();
+                qint64 fileSize = musicObj["file_size"].toVariant().toLongLong();
+                double duration = musicObj["duration"].toDouble();
+
+                qDebug() << "UUID:" << uuid;
+                qDebug() << "User ID:" << userId;
+                qDebug() << "Music Name:" << musicName;
+                qDebug() << "File Path:" << filePath;
+                qDebug() << "Like Count:" << likeCount;
+                qDebug() << "File Size:" << fileSize;
+                qDebug() << "Duration:" << duration;
+            }
+            //上面
+            emit sendGetMusicInfosInformation(true,"获取热门数据成功",musicListArray);
+        },
+        [this](const QString &error) {
+            emit sendGetMusicInfosInformation(false,"网络错误：" + error,QJsonArray());
+        });
+}
+
 void musicRequestSender::sendGetHotMusic(){
     HotMusicRequest request;
     request.setRequest();
