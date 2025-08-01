@@ -20,20 +20,23 @@ class MusicFunc : public QObject
 {
     Q_OBJECT
 public:
-//    explicit MusicFunc(QObject *parent = nullptr);
+    explicit MusicFunc(QObject *parent = nullptr);
     void setMusicParent(QObject *parent);
 
     void downloadFile(const QUrl &fileUrl, const QString &file_name,const QString &saveDir);
 
-    static MusicFunc* GetInstance() {
-        static MusicFunc instance;
-        return &instance;
-    }
+//    static MusicFunc* GetInstance() {
+//        static MusicFunc instance;
+//        return &instance;
+//    }
 
     //进行下载操作
 
+signals:
+    //file_id这个uuid方便进行回调操作
+    void sendMusicDownloadInformation(bool ok,QString message,QString file_id);
 private:
-    MusicFunc()=default;
+
     //使用音乐播放器的那个窗口类
     QWidget* parentWidget;
 

@@ -1,6 +1,13 @@
 #include "musicfunc.h"
 
 
+MusicFunc::MusicFunc(QObject *parent)
+     : QObject{parent}
+{
+
+}
+
+
 void MusicFunc::setMusicParent(QObject *parent){
     parentWidget=qobject_cast<QWidget *>(parent);
 }
@@ -20,7 +27,8 @@ void MusicFunc::downloadFile(const QUrl &fileUrl, const QString &file_name,const
     QFile *file = new QFile(savePath);
 
     if (!file->open(QIODevice::WriteOnly)) {
-        QMessageBox::warning(parentWidget, "错误", "无法打开文件路径进行保存！");
+//        QMessageBox::warning(parentWidget, "错误", "无法打开文件路径进行保存！");
+        emit sendMusicDownloadInformation(false,"无法打开文件路径进行保存！",file_name);
         delete file;
         manager->deleteLater();
         return;
@@ -38,10 +46,12 @@ void MusicFunc::downloadFile(const QUrl &fileUrl, const QString &file_name,const
 
         if (reply->error() == QNetworkReply::NoError) {
             qDebug() << "下载成功：" << savePath;
-            QMessageBox::information(parentWidget, "下载完成", "视频下载成功！");
+//            QMessageBox::information(parentWidget, "下载完成", "视频下载成功！");
+            emit sendMusicDownloadInformation(true,"下载完成,视频下载成功！",file_name);
         } else {
             qDebug() << "下载失败：" << reply->errorString();
-            QMessageBox::warning(parentWidget, "下载失败", reply->errorString());
+//            QMessageBox::warning(parentWidget, "下载失败", reply->errorString());
+            emit sendMusicDownloadInformation(true,"下载失败:"+reply->errorString(),file_name);
             QFile::remove(savePath);
         }
 

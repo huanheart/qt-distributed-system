@@ -37,7 +37,7 @@ public:
     void sendGetMusicInfos(int id,int cnt);
 
 signals:
-    void sendMusicDownloadInformation(bool ok,QString message);
+    void sendMusicDownloadInformation(bool ok,QString message,QString file_id);
 
     void sendMusicUploadInformation(bool ok,QString message);
 
@@ -52,7 +52,7 @@ private:
     JsonRequestSender* json_sender;
     //使用发送器的那个窗口类
     QWidget* parentWidget;
-
+    MusicFunc* music_func;
     //这里定死了字段名,传输的文件字段名
     QString file_name="file";
 

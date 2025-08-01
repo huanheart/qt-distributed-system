@@ -7,6 +7,11 @@ musicRequestSender::musicRequestSender(QObject *parent)
 {
     json_sender = new JsonRequestSender(this);
     formdata_sender=new FormDataRequestSender(this);
+
+    music_func=new MusicFunc(this);
+    connect(music_func,&MusicFunc::sendMusicDownloadInformation,this,[=](bool ok,QString message,QString file_id){
+        emit sendMusicDownloadInformation(ok,message,file_id);
+    });
 }
 
 
@@ -22,7 +27,7 @@ void musicRequestSender::sendMusicDownload(QString file_id,QString save_path){
             QString error_msg="";
             QJsonObject obj=response.parse(data,error_msg);
             if(error_msg!=""){
-                emit sendMusicDownloadInformation(false,"下载音乐文件错误：" +error_msg);
+                emit sendMusicDownloadInformation(false,"下载音乐文件错误：" +error_msg,file_id);
                 return ;
             }
             //获取文件路径
@@ -30,13 +35,14 @@ void musicRequestSender::sendMusicDownload(QString file_id,QString save_path){
             //先将其保存到全局配置中去
             InformationManager::GetInstance()->setHttpFilePath(file_path);
             //使用前一定要绑定需要用到这个对象的窗口，这样才能进行弹窗
-            MusicFunc::GetInstance()->setMusicParent(parentWidget);
-            MusicFunc::GetInstance()->downloadFile(InformationManager::GetInstance()->GetHttpFilePath(),file_id,save_path);
-//            QMessageBox::information(parentWidget, "成功", "该文件的地址为: " +file_path);
-            emit sendMusicDownloadInformation(true,"成功,该文件的地址为: " +file_path);
+            music_func->setMusicParent(parentWidget);
+            music_func->downloadFile(InformationManager::GetInstance()->GetHttpFilePath(),file_id,save_path);
+            //重点注意：这里并没有完全下载，因为是分成两步的，此时只是成功返回了文件的http地址而已
+            //固然这边通过music_func成员调用downloadFile内部进行传参
+//            emit sendMusicDownloadInformation(true,"成功,该文件的地址为: " +file_path);
         },
-        [this](const QString &error) {
-            emit sendMusicDownloadInformation(false,"网络错误：" + error);
+        [this,file_id](const QString &error) {
+            emit sendMusicDownloadInformation(false,"网络错误：" + error,file_id);
         });
 
 }
@@ -99,6 +105,7 @@ void musicRequestSender::sendGetMusicInfos(int id,int cnt){
             for (const QJsonValue &value : musicListArray) {
                 QJsonObject musicObj = value.toObject();
 
+                qint64 id = musicObj["id"].toVariant().toLongLong();
                 QString uuid = musicObj["uuid"].toString();
                 qint64 userId = musicObj["user_id"].toVariant().toLongLong();
                 QString musicName = musicObj["music_name"].toString();
@@ -107,6 +114,7 @@ void musicRequestSender::sendGetMusicInfos(int id,int cnt){
                 qint64 fileSize = musicObj["file_size"].toVariant().toLongLong();
                 double duration = musicObj["duration"].toDouble();
 
+                qDebug()<<"id: "<<id;
                 qDebug() << "UUID:" << uuid;
                 qDebug() << "User ID:" << userId;
                 qDebug() << "Music Name:" << musicName;

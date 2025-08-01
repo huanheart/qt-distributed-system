@@ -33,6 +33,7 @@ SOURCES += \
     widget.cpp \
     window/LoginWindow/loginwindow.cpp \
     window/Main/LeftList.cpp \
+    window/Main/downloadManager.cpp \
     window/Main/findMusic.cpp \
     window/Register/registerwindow.cpp \
     window/WindowManager.cpp
@@ -65,6 +66,7 @@ HEADERS += \
     widget.h \
     window/LoginWindow/loginwindow.h \
     window/Main/LeftList.h \
+    window/Main/downloadManager.h \
     window/Main/findMusic.h \
     window/Register/registerwindow.h \
     window/WindowManager.h
@@ -73,6 +75,7 @@ FORMS += \
     widget.ui \
     window/LoginWindow/loginwindow.ui \
     window/Main/LeftList.ui \
+    window/Main/downloadManager.ui \
     window/Main/findMusic.ui \
     window/Register/registerwindow.ui
 
