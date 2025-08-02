@@ -41,7 +41,8 @@ void findMusic::DealDownLoadMusic(bool ok,QString message,QString file_id){
     // 1. 准备一个新的对象
     QJsonObject newObj;
     newObj["uuid"] = musicObj["uuid"].toString();
-    newObj["music_name"] = musicObj["music_name"].toString();
+    //这里方便获取后缀，方便下载管理中进行播放音乐
+    newObj["music_name"] = musicObj["music_name"].toString()+"."+ QFileInfo(musicObj["file_path"].toString()).suffix();
     newObj["like_count"] = musicObj["like_count"].toVariant().toLongLong();
     newObj["file_size"] = musicObj["file_size"].toVariant().toLongLong();
     newObj["duration"] = musicObj["duration"].toDouble();

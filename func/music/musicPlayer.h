@@ -29,8 +29,10 @@ public:
 
     //设置音量
     void setVolume(int val);
-    //设置音乐地址(这里只需要
+    //设置远程音乐地址
     void setFileId(QString file_id);
+    //设置本地音乐地址
+    void setLocalFileId(QString file_path);
 
     //设置播放成功的回调函数
     void setSuccessFunc(SuccessCallback func);
@@ -39,6 +41,10 @@ public:
 
     //开始播放
     void startPlay();
+
+    void pausePlay();
+
+    void stopPlay();
 
     //设置音乐播放进度(以秒为单位）
     void setPosition(qint64 s);

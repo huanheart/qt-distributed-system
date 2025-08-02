@@ -33,8 +33,8 @@ void NewCourierItem::setLogPic(){
 void NewCourierItem::display(){
     ui->MusicTimer->setText(formatDuration(duration));
     ui->MusicLikeCount->setText("点赞数: "+QString().number(like_count));
-    ui->MusicName->setText(music_name);
-
+    ui->MusicName->setText(QFileInfo(music_name).completeBaseName());
+    ui->label->setText(QString().number(id));
     QString str = "QWidget{border-image:url("+url+");}";
     ui->widMusicPic->setStyleSheet(str);
 }
@@ -47,6 +47,15 @@ void NewCourierItem::setMusicTimer(double duration){
     this->duration=duration;
 }
 
+void NewCourierItem::setFinishedDownloadStatus(){
+    ui->download->setText("已下载");
+    ui->download->setEnabled(false);
+}
+
+void NewCourierItem::setDownloadStatus(){
+    ui->download->setText("下载");
+    ui->download->setEnabled(true);
+}
 
 void NewCourierItem::setUserID(int user_id){
     this->user_id=user_id;
@@ -72,9 +81,12 @@ void NewCourierItem::on_download_clicked()
     emit download(file_id);
 }
 
-
+//注意
 void NewCourierItem::on_play_clicked()
 {
+    //用于远程音乐的信号
     emit playMusic(file_id);
+    //用于本地音乐的信号
+    emit playLocalMusic(file_id+"."+QFileInfo(music_name).suffix());
 }
 

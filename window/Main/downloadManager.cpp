@@ -6,9 +6,7 @@ DownloadManager::DownloadManager(QWidget *parent) :
     ui(new Ui::DownloadManager)
 {
     ui->setupUi(this);
-    //每次点击的时候触发这个
-//    LoadFileInfo();
-
+    player=new MusicPlayer(this);
 }
 
 void DownloadManager::LoadFileInfo() {
@@ -55,6 +53,9 @@ void DownloadManager::LoadFileInfo() {
             music_map[uuid]=musicObj;
             qint64 like_count=musicObj["like_count"].toVariant().toLongLong();
             QString music_name=musicObj["music_name"].toString();
+            //提取前缀
+//            music_name=QFileInfo(music_name).completeBaseName();
+
             qint64 file_size=musicObj["file_size"].toVariant().toLongLong();
             double duration=musicObj["duration"].toDouble();
 
@@ -73,17 +74,22 @@ void DownloadManager::LoadFileInfo() {
             nitem->setFileSize(file_size);
             nitem->setFileID(uuid);
             nitem->setPicture(":/images/NewMusic/01.png");
+            //标记为已下载状态
+            nitem->setFinishedDownloadStatus();
+
             //最后一步将内容显示到item上
             nitem->display();
             // 添加调试颜色（确认能显示）
             nitem->setStyleSheet("background-color: rgba(255, 0, 0, 50);");  // 浅红色方便观察
 
             // 绑定按钮信号
-            connect(nitem, &NewCourierItem::playMusic, this, [=](QString file_id) {
-                //todo：本地播放待做
-//                player->setFileId(file_id);
-//                player->startPlay();
-
+            connect(nitem, &NewCourierItem::playLocalMusic, this, [=](QString file_path) {
+                //todo：这里还要检验文件是否已被删除（此时需要删除file_info文件相关信息)
+                //主要用户可能在文件浏览器删除这个文件
+                player->setLocalFileId(save_path+file_path);
+                qDebug()<<"LocalFileId is:  "<<save_path+file_path;
+                qDebug() << "exists:" << QFile::exists(save_path+file_path);
+                player->startPlay();
             });
             QSize hint = nitem->sizeHint();
             hint.setHeight(80); // 给一个足够的高度

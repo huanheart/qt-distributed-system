@@ -2,6 +2,7 @@
 #define NEWCOURIERITEM_H
 
 #include <QWidget>
+#include<QFileInfo>
 
 namespace Ui {
 class NewCourierItem;
@@ -43,6 +44,8 @@ public:
     void setFileID(QString file_id);
     void setFilePath(QString file_path);
 
+    void setFinishedDownloadStatus();
+    void setDownloadStatus();
     int getLikeCount() const {
         return like_count;
     }
@@ -69,7 +72,11 @@ public:
 
 signals:
     void download(QString file_id);
+
+    //注意：使用者要么绑定playMusic要么绑定playLocalMusic，不能二者都绑定，否则会出错
     void playMusic(QString file_id);
+    void playLocalMusic(QString file_path);
+
 private slots:
     void on_download_clicked();
 

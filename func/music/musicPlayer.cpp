@@ -36,13 +36,19 @@ void MusicPlayer::setVolume(int val){
         val=0;
     player->setVolume(val);
 }
-//设置音乐地址
+//设置远程音乐地址
 void MusicPlayer::setFileId(QString file_id){
     //合并之后类似
     // http://192.168.15.1/api/music/stream?file_id=%1&token=%2
     QString url=Router::GetInstance()->GetMusicStreamPath()+"?file_id="+file_id+"&token="+AuthManager::GetInstance()->getToken();
     player->setMedia(QUrl(url) );
 }
+//设置本地音乐地址
+void MusicPlayer::setLocalFileId(QString file_path){
+    QUrl localUrl = QUrl::fromLocalFile(file_path);
+    player->setMedia(localUrl);
+}
+
 //设置播放成功的回调函数
 void MusicPlayer::setSuccessFunc(SuccessCallback func){
     onSuccess=func;
@@ -55,6 +61,14 @@ void MusicPlayer::setFailFunc(FailCallback func){
 //开始播放
 void MusicPlayer::startPlay(){
     player->play();
+}
+
+void MusicPlayer::pausePlay(){
+    player->pause();
+}
+
+void MusicPlayer::stopPlay(){
+    player->stop();
 }
 
 void MusicPlayer::setPosition(qint64 s){

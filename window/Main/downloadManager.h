@@ -16,10 +16,13 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTextStream>
+#include<QFileInfo>
 
 #include<QListWidgetItem>
 #include"newcourieritem.h"
 
+#include"../../func/music/musicfunc.h"
+#include"../../func/music/musicPlayer.h"
 
 namespace Ui {
 class DownloadManager;
@@ -43,7 +46,7 @@ private:
     //todo:由于其它模块也会用到这个路径，固然得将其抽离出来
     QString save_path="D:\\qt_wen_jian_mu_lu\\MyMusicPlatform\\request\\";
     QString file_info=save_path+"file_info.json";
-
+    MusicPlayer *player=nullptr;
     QMap<QString,QJsonObject> music_map;
 
     Ui::DownloadManager *ui;

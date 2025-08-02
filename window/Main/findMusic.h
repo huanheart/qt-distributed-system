@@ -23,6 +23,7 @@
 #include"newcourieritem.h"
 #include"../../func/music/musicfunc.h"
 #include"../../func/music/musicPlayer.h"
+
 namespace Ui {
 class findMusic;
 }

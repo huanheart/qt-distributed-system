@@ -78,7 +78,7 @@ void Widget::on_download_clicked()
 
 void Widget::on_upload_clicked()
 {
-    QString music_path="D:\\CloudMusic\\市川淳 - ヨスガノソラ メインテーマ -遠い空へ-.mp3";
+    QString music_path="D:\\CloudMusic\\三浦透子,RADWIMPS - グランドエスケープ (Movie edit).flac";
     music_sender->sendMusicUpload(music_path);
 }
 
