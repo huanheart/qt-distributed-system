@@ -51,7 +51,7 @@ void DownloadManager::LoadFileInfo() {
     for (const QJsonValue& value : jsonArray) {
         if (value.isObject()) {
             QJsonObject musicObj = value.toObject();
-            QString uuid = obj["uuid"].toString();
+            QString uuid = musicObj["uuid"].toString();
             music_map[uuid]=musicObj;
             qint64 like_count=musicObj["like_count"].toVariant().toLongLong();
             QString music_name=musicObj["music_name"].toString();

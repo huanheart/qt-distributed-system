@@ -106,6 +106,8 @@ void findMusic::DealFindMusic(bool ok,QString message,QJsonArray musicListArray)
         QString filePath = musicObj["file_path"].toString();
         qint64 userId = musicObj["user_id"].toVariant().toLongLong();
 
+
+
         // 创建 item 和 widget
         QListWidgetItem *item = new QListWidgetItem(ui->listAll);
         NewCourierItem *nitem = new NewCourierItem(); // 保证 .ui 里控件都 setupUi 了

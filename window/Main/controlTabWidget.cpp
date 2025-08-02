@@ -29,6 +29,10 @@ void controlTabWidget::GetMusicInfos(){
 void controlTabWidget::receiveShowCurrentTab(int cur,int index){
     if(cur==0){
         ui->tabWidget->setCurrentIndex(index);
+        //将对应列表刷新
+        if(1==index){
+            ui->downloadManager->LoadFileInfo();
+        }
     }else if(cur==1){
         //todo:这里硬编码不太好，后续更改这个槽函数
         //这个6得更改

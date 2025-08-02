@@ -1,6 +1,8 @@
 #include "LeftList.h"
 #include "ui_LeftList.h"
 
+#include<QDebug>
+
 LeftList::LeftList(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LeftList)

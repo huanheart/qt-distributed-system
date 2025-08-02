@@ -34,9 +34,9 @@ public:
 
 
     ~DownloadManager();
-
-private:
     void LoadFileInfo();
+private:
+
 
 private:
     //下载音乐所需要保存到的文件路径
