@@ -31,6 +31,8 @@ void WindowManager::HideWindows(){
 void WindowManager::DisplayMainWindow(){
     HideWindows();
     Widget::GetMainWindow()->show();
+    Widget::GetMainWindow()->GetMusicInfos();
+
 }
 
 void WindowManager::DisplayLoginWindow(){

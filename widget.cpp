@@ -19,6 +19,9 @@ void Widget::init(){
     user_sender=new userRequestSender(this);
     music_sender=new musicRequestSender(this);
     player = new MusicPlayer(this);
+
+    connect(this,&Widget::sendGetMusicInfos,ui->widget_2,&controlTabWidget::GetMusicInfos);
+
 }
 
 Widget::~Widget()
@@ -39,6 +42,9 @@ void Widget::playRemoteMusic(const QString &fileID) {
     player->startPlay();  // 开始播放
 }
 
+void Widget::GetMusicInfos(){
+    emit sendGetMusicInfos();
+}
 
 void Widget::on_login_clicked()
 {
@@ -68,7 +74,7 @@ void Widget::on_download_clicked()
 
 void Widget::on_upload_clicked()
 {
-    QString music_path="D:\\CloudMusic\\ttt.mp3";
+    QString music_path="D:\\CloudMusic\\市川淳 - ヨスガノソラ メインテーマ -遠い空へ-.mp3";
     music_sender->sendMusicUpload(music_path);
 }
 

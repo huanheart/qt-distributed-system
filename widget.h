@@ -59,7 +59,11 @@ public:
 
     void playRemoteMusic(const QString &fileID);
 
+    void GetMusicInfos();
+
 signals:
+    void sendGetMusicInfos();
+
 
 private slots:
     void on_login_clicked();

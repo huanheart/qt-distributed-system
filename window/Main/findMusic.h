@@ -16,9 +16,13 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTextStream>
+
+
 #include"../../requestSender/musicRequestSender.h"
 #include"../../func/utils/utils.h"
-
+#include"newcourieritem.h"
+#include"../../func/music/musicfunc.h"
+#include"../../func/music/musicPlayer.h"
 namespace Ui {
 class findMusic;
 }
@@ -35,10 +39,14 @@ public:
     void DealFindMusic(bool ok,QString message,QJsonArray musicListArray);
 
     void DealDownLoadMusic(bool ok,QString message,QString file_id);
+
+    void sendGetMusicInfos();
+
 public:
 
 private:
     musicRequestSender* music_sender=nullptr;
+    MusicPlayer *player;
     //维护一个自定义请求类型
     QMap<QString,QJsonObject> music_map;
     int id;

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,4,4,1">
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,6,6,1,1">
    <item>
     <spacer name="horizontalSpacer">
      <property name="orientation">
@@ -29,6 +29,9 @@
    </item>
    <item>
     <widget class="LeftList" name="widget" native="true"/>
+   </item>
+   <item>
+    <widget class="controlTabWidget" name="widget_2" native="true"/>
    </item>
    <item>
     <widget class="QFrame" name="frame">
@@ -174,6 +177,12 @@
    <class>LeftList</class>
    <extends>QWidget</extends>
    <header location="global">window/Main/LeftList.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>controlTabWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">window/Main/controlTabWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

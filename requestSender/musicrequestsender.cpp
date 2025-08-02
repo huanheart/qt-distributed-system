@@ -124,7 +124,7 @@ void musicRequestSender::sendGetMusicInfos(int id,int cnt){
                 qDebug() << "Duration:" << duration;
             }
             //上面
-            emit sendGetMusicInfosInformation(true,"获取热门数据成功",musicListArray);
+            emit sendGetMusicInfosInformation(true,"获取数据成功",musicListArray);
         },
         [this](const QString &error) {
             emit sendGetMusicInfosInformation(false,"网络错误：" + error,QJsonArray());

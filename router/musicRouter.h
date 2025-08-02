@@ -31,7 +31,7 @@ private:
 
     QString hot_music_path="/rankings";
 
-    QString music_infos="music_infos";
+    QString music_infos="/music_infos";
 
 private:
 
