@@ -13,9 +13,9 @@ void NewCourierItem::setNum(int id){
     this->id=id;
 }
 ////设置图片
-//void NewCourierItem::setPicture(QString url){
-//    this->url=url;
-//}
+void NewCourierItem::setPicture(QString url){
+    this->url=url;
+}
 ////设置作者
 //void NewCourierItem::setMusicAuthor(QString author){
 
@@ -34,6 +34,9 @@ void NewCourierItem::display(){
     ui->MusicTimer->setText(formatDuration(duration));
     ui->MusicLikeCount->setText("点赞数: "+QString().number(like_count));
     ui->MusicName->setText(music_name);
+
+    QString str = "QWidget{border-image:url("+url+");}";
+    ui->widMusicPic->setStyleSheet(str);
 }
 
 void NewCourierItem::setMusicLikeCount(int like_count){

@@ -10,10 +10,21 @@ LeftList::LeftList(QWidget *parent) :
     setListT2();
     //注意：list3是创建歌单的，固然不用一开始就添加一些内容上去
     //todo：后续要做成网络拉取歌单状态，提前在初始化阶段创建好
-    connect(ui->list1, &QListWidget::itemClicked, this, LeftListClicked_1);
-    connect(ui->list2, &QListWidget::itemClicked, this, LeftListClicked_2);
-
-    connect(ui->list3, &QListWidget::itemClicked, this, LeftListClicked_3);
+    connect(ui->list1, &QListWidget::itemClicked, this, [&](QListWidgetItem *item){
+        int index = ui->list1->row(item);
+        qDebug()<<"页面1被点击了,具体元素下标为 "<<index;
+        emit LeftListClicked_1(0,index);
+    });
+    connect(ui->list2, &QListWidget::itemClicked, this, [&](QListWidgetItem *item){
+        int index = ui->list2->row(item);
+        qDebug()<<"页面2被点击了,具体元素下标为 "<<index;
+        emit LeftListClicked_2(1,index);
+    });
+    connect(ui->list3, &QListWidget::itemClicked, this, [&](QListWidgetItem *item){
+        int index = ui->list3->row(item);
+        qDebug()<<"页面3被点击了,具体元素下标为 "<<index;
+        emit LeftListClicked_3(2,index);
+    });
 
 }
 

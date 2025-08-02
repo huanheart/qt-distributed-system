@@ -23,9 +23,9 @@ private:
     void setListT2();
 
 signals:
-    void LeftListClicked_1(QListWidgetItem *item);
-    void LeftListClicked_2(QListWidgetItem *item);
-    void LeftListClicked_3(QListWidgetItem *item);
+    void LeftListClicked_1(int cur,int index);
+    void LeftListClicked_2(int cur,int index);
+    void LeftListClicked_3(int cur,int index);
 private:
 
     Ui::LeftList *ui;

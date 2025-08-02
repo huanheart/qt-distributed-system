@@ -17,6 +17,10 @@ public:
 
 
     void GetMusicInfos();
+
+public slots:
+    void receiveShowCurrentTab(int cur,int index);
+
 signals:
     void sendGetMusicInfos();
 

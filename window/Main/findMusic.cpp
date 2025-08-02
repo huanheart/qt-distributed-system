@@ -119,6 +119,10 @@ void findMusic::DealFindMusic(bool ok,QString message,QJsonArray musicListArray)
         nitem->setFileSize(file_size);
         nitem->setFileID(uuid);
         nitem->setFilePath(filePath);
+
+        nitem->setPicture(":/images/NewMusic/01.png");
+
+//        nitem->setFilePath("D:\\qt_wen_jian_mu_lu\\MyMusicPlatform\\images\\NewMusic\\01.png");
         //最后一步将内容显示到item上
         nitem->display();
         // 添加调试颜色（确认能显示）

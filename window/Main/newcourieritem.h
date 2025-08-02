@@ -16,7 +16,7 @@ public:
     ~NewCourierItem();
 
     //设置图片(暂时不提供图片显示功能）
-//    void setPicture(QString url);
+    void setPicture(QString url);
 
 //    //设置作者（暂时不提供该功能）
 //    void setMusicAuthor(QString author);
@@ -101,7 +101,7 @@ private:
     //文件http的路径
     QString file_path;
     //图片(暂且不可以放图片）
-//    QString url;
+    QString url;
     Ui::NewCourierItem *ui;
 };
 

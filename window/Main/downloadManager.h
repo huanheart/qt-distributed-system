@@ -17,6 +17,10 @@
 #include <QJsonObject>
 #include <QTextStream>
 
+#include<QListWidgetItem>
+#include"newcourieritem.h"
+
+
 namespace Ui {
 class DownloadManager;
 }

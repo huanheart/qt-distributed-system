@@ -92,3 +92,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     readme.md
+
+RESOURCES += \
+    res.qrc
