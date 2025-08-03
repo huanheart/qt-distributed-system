@@ -40,7 +40,7 @@ public:
 
     //用户登录之后相关api
     QString GetLikePath();
-
+    QString GetLikeInfosPath();
 
     static Router* GetInstance(){
         static Router r;

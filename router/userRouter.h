@@ -18,6 +18,7 @@ public:
     QString GetLoginPath();
     QString GetCaptchaPath();
     QString GetLikePath();
+    QString GetLikeInfosPath();
 private:
     //顶级目录
     QString user_path="/user";
@@ -29,7 +30,7 @@ private:
 
     //登录后相关用户目录
     QString like_path="/like";
-
+    QString like_infos_path="/query_like_infos";
 private:
 
     userRouter()=default;

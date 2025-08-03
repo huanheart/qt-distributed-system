@@ -102,6 +102,33 @@ void userRequestSender::sendLogin(QString username,QString password){
     );
 }
 
+void userRequestSender::queryLikeInfos(QStringList file_ids){
+    UserLikeInfosRequest request;
+    request.setRequest(file_ids);
+    //发送请求
+    sender->sendPostRequest(
+        Router::GetInstance()->GetLikeInfosPath(),
+        request,
+        // 成功回调
+        [this](const QByteArray &data) {
+            JsonResponse response;
+            QString error_msg="";
+            QJsonObject obj=response.parse(data,error_msg);
+            if(error_msg!=""){
+                emit sendQueryLikeInfosInformation(false,"获取音乐行为(如点赞)信息失败"+error_msg,{});
+                return ;
+            }
+            QStringList file_ids = obj.value("file_ids").toVariant().toStringList();
+            emit sendQueryLikeInfosInformation(true,"获取音乐行为(如点赞)信息成功",file_ids);
+        },
+
+        // 失败回调
+        [this](const QString &error) {
+            emit sendQueryLikeInfosInformation(false,"网络错误: "+error,{});
+        }
+    );
+}
+
 void userRequestSender::sendLike(QString file_id){
     UserLikeRequest request;
     request.setRequest(file_id);
@@ -112,27 +139,24 @@ void userRequestSender::sendLike(QString file_id){
         request,
 
         // 成功回调
-        [this](const QByteArray &data) {
+        [this,file_id](const QByteArray &data) {
             JsonResponse response;
             QString error_msg="";
             QJsonObject obj=response.parse(data,error_msg);
             if(error_msg!=""){
-                emit sendLikeInformation(false,"点赞/取消点赞 失败: "+error_msg);
+                emit sendLikeInformation(false,"点赞/取消点赞 失败: "+error_msg,file_id,0,0);
                 return ;
             }
-
             qint64 LikeCnt = obj.value("like_count").toVariant().toLongLong();
             qint64 LikeStatus = obj.value("like_status").toVariant().toLongLong();
 
-            //todo:后续需要发送信号/便于渲染到界面中
             qDebug()<<"likeCnt is "<<LikeCnt<<" and LikeStatus is "<<LikeStatus;
-//            QMessageBox::information(parentWidget, "点赞/取消点赞成功", "点赞/取消点赞成功");
-            emit sendLikeInformation(true,"点赞/取消点赞成功");
+            emit sendLikeInformation(true,"点赞/取消点赞成功",file_id,LikeCnt,LikeStatus);
         },
 
         // 失败回调
-        [this](const QString &error) {
-            emit sendLikeInformation(false,"网络错误: "+error);
+        [this,file_id](const QString &error) {
+            emit sendLikeInformation(false,"网络错误: "+error,file_id,0,0);
         }
     );
 }

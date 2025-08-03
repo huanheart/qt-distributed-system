@@ -20,6 +20,7 @@ SOURCES += \
     request/music/musicUpload.cpp \
     request/user/captcha.cpp \
     request/user/like.cpp \
+    request/user/likeinfos.cpp \
     request/user/login.cpp \
     request/user/register.cpp \
     requestSender/formdatarequestsender.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     request/music/musicUpload.h \
     request/user/captcha.h \
     request/user/like.h \
+    request/user/likeinfos.h \
     request/user/login.h \
     request/user/login.hpp \
     request/user/register.h \

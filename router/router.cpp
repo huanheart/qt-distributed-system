@@ -68,3 +68,8 @@ QString Router::GetLikePath(){
     return GetRouterPath()+userRouter::GetInstance()->GetLikePath();
 }
 
+QString Router::GetLikeInfosPath(){
+    return GetRouterPath()+userRouter::GetInstance()->GetLikeInfosPath();
+}
+
+

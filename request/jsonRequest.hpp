@@ -5,7 +5,7 @@
 
 #include<QVariant>
 #include<QString>
-
+#include<QStringList>
 
 using namespace std;
 

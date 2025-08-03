@@ -18,3 +18,7 @@ QString userRouter::GetLikePath(){
     return login_path+like_path;
 }
 
+QString userRouter::GetLikeInfosPath(){
+    return login_path+like_infos_path;
+}
+

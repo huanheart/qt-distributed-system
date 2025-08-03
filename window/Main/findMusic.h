@@ -19,10 +19,14 @@
 
 
 #include"../../requestSender/musicRequestSender.h"
+#include"../../requestSender/userrequestsender.h"
+
 #include"../../func/utils/utils.h"
 #include"newcourieritem.h"
 #include"../../func/music/musicfunc.h"
 #include"../../func/music/musicPlayer.h"
+
+
 
 namespace Ui {
 class findMusic;
@@ -43,13 +47,24 @@ public:
 
     void sendGetMusicInfos();
 
+    void DealLikeInfos(bool ok,QString message,QStringList file_ids);
+
+    void DealLike(bool ok,QString message,QString file_id,qint64 LikeCnt,qint64 LikeStatus);
+
 public:
 
 private:
+    void AddItem();
+
+private:
     musicRequestSender* music_sender=nullptr;
+    userRequestSender* user_sender=nullptr;
     MusicPlayer *player;
     //维护一个自定义请求类型
     QMap<QString,QJsonObject> music_map;
+    //通过file_id查询具体的指针，方便对指针内容进行修改操作
+    QMap<QString,NewCourierItem*> Item_map;
+    QStringList file_ids;
     int id;
     //这里先硬编码对应的请求多少cnt个数据了,后续整理一个config文件，将其存放
     //对应的token也存放到一个注册表中或指定文件中了

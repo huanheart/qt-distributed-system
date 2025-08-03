@@ -8,7 +8,7 @@
 #include"request/user/login.h"
 #include"request/user/register.h"
 #include"request/user/like.h"
-
+#include"request/user/likeinfos.h"
 
 #include"../middleware/auth/Auth.h"
 
@@ -36,6 +36,8 @@ public:
     //为某一个音乐点赞
     void sendLike(QString file_id);
 
+    //查询file_ids数组中有哪些file_id是被当前用户点赞了的
+    void queryLikeInfos(QStringList file_ids);
 signals:
     void sendCaptchaInformation(bool ok,QString message);
 
@@ -43,7 +45,9 @@ signals:
 
     void sendLoginInformation(bool ok,QString message);
 
-    void sendLikeInformation(bool ok,QString message);
+    void sendLikeInformation(bool ok,QString message,QString file_id,qint64 LikeCnt,qint64 LikeStatus);
+
+    void sendQueryLikeInfosInformation(bool ok,QString message,QStringList file_ids);
 private:
     JsonRequestSender* sender;
 //使用发送器的那个窗口类

@@ -44,8 +44,17 @@ public:
     void setFileID(QString file_id);
     void setFilePath(QString file_path);
 
+
     void setFinishedDownloadStatus();
     void setDownloadStatus();
+
+    //设置like按钮的状态
+    void setLikeStatus();
+    void setFinishedLikeStatus();
+    void HideLike();
+    void ShowLike();
+    //截至设置like按钮的状态
+
     int getLikeCount() const {
         return like_count;
     }
@@ -69,7 +78,9 @@ public:
     QString getFilePath() const {
         return file_path;
     }
-
+    int getLikeStatus() const {
+        return like_status;
+    }
 signals:
     void download(QString file_id);
 
@@ -77,10 +88,15 @@ signals:
     void playMusic(QString file_id);
     void playLocalMusic(QString file_path);
 
+    //点赞信号
+    void Like(QString file_id);
+
 private slots:
     void on_download_clicked();
 
     void on_play_clicked();
+
+    void on_like_clicked();
 
 private:
     QString formatDuration(double duration) {
@@ -109,6 +125,8 @@ private:
     QString file_path;
     //图片(暂且不可以放图片）
     QString url;
+    //点赞状态
+    int like_status=0;
     Ui::NewCourierItem *ui;
 };
 

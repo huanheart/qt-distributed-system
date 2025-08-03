@@ -31,12 +31,23 @@ void NewCourierItem::setLogPic(){
 }
 
 void NewCourierItem::display(){
+    //更新音乐时长
     ui->MusicTimer->setText(formatDuration(duration));
+    //更新点赞数
     ui->MusicLikeCount->setText("点赞数: "+QString().number(like_count));
+    //更新音乐名
     ui->MusicName->setText(QFileInfo(music_name).completeBaseName());
+    //更新id号
     ui->label->setText(QString().number(id));
+    //更新图片
     QString str = "QWidget{border-image:url("+url+");}";
     ui->widMusicPic->setStyleSheet(str);
+    //更新点赞状态
+    if(0==like_status){
+        ui->like->setText("点赞");
+    }else {
+        ui->like->setText("取消点赞");
+    }
 }
 
 void NewCourierItem::setMusicLikeCount(int like_count){
@@ -45,6 +56,20 @@ void NewCourierItem::setMusicLikeCount(int like_count){
 //设置timer
 void NewCourierItem::setMusicTimer(double duration){
     this->duration=duration;
+}
+//表示未点赞状态
+void NewCourierItem::setLikeStatus(){
+    like_status=0;
+}
+//表示已点赞状态
+void NewCourierItem::setFinishedLikeStatus(){
+    like_status=1;
+}
+void NewCourierItem::HideLike(){
+    ui->like->hide();  // 隐藏按钮
+}
+void NewCourierItem::ShowLike(){
+    ui->like->show();  // 显示按钮
 }
 
 void NewCourierItem::setFinishedDownloadStatus(){
@@ -88,5 +113,11 @@ void NewCourierItem::on_play_clicked()
     emit playMusic(file_id);
     //用于本地音乐的信号
     emit playLocalMusic(file_id+"."+QFileInfo(music_name).suffix());
+}
+
+
+void NewCourierItem::on_like_clicked()
+{
+    emit Like(file_id);
 }
 

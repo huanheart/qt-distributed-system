@@ -76,7 +76,8 @@ void DownloadManager::LoadFileInfo() {
             nitem->setPicture(":/images/NewMusic/01.png");
             //标记为已下载状态
             nitem->setFinishedDownloadStatus();
-
+            //将点赞功能隐藏掉，本地音乐不提供点赞功能
+            nitem->HideLike();
             //最后一步将内容显示到item上
             nitem->display();
             // 添加调试颜色（确认能显示）
