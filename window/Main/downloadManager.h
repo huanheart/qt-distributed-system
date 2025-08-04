@@ -39,7 +39,10 @@ public:
     ~DownloadManager();
     void LoadFileInfo();
 private:
-
+    void removeUUIDFromItem_mapAndlist(QString baseName);
+    void removeUUIDFromFile(QString baseName);
+public:
+    void onFileDeleteChanged(const QString &path);
 
 private:
     //下载音乐所需要保存到的文件路径
@@ -48,7 +51,7 @@ private:
     QString file_info=save_path+"file_info.json";
     MusicPlayer *player=nullptr;
     QMap<QString,QJsonObject> music_map;
-
+    QMap<QString,NewCourierItem*> Item_map;
     Ui::DownloadManager *ui;
 };
 

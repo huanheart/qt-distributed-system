@@ -17,8 +17,14 @@ void controlTabWidget::init(){
     ui->tabWidget->setAutoFillBackground(true);
     ui->tabWidget->setPalette(palette);
     ui->tabWidget->tabBar()->setPalette(palette);
-
+    watcher=new QFileSystemWatcher(this);
     connect(this,&controlTabWidget::sendGetMusicInfos,ui->find_music,&findMusic::sendGetMusicInfos);
+
+    connect(ui->find_music,&findMusic::setMusicPathToWatcher,this,[this](QString file_path){
+        this->watcher->addPath(file_path);
+    });
+    connect(watcher, &QFileSystemWatcher::fileChanged, ui->find_music, &findMusic::onFileDeleteChanged);
+    connect(watcher,&QFileSystemWatcher::fileChanged,ui->downloadManager,&DownloadManager::onFileDeleteChanged);
 
 }
 

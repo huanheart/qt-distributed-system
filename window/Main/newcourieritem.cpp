@@ -72,6 +72,14 @@ void NewCourierItem::ShowLike(){
     ui->like->show();  // 显示按钮
 }
 
+void NewCourierItem::HideMusicLikeCount(){
+    ui->MusicLikeCount->hide();
+}
+
+void NewCourierItem::ShowMusicLikeCount(){
+    ui->MusicLikeCount->show();
+}
+
 void NewCourierItem::setFinishedDownloadStatus(){
     ui->download->setText("已下载");
     ui->download->setEnabled(false);

@@ -53,6 +53,8 @@ public:
     void setFinishedLikeStatus();
     void HideLike();
     void ShowLike();
+    void ShowMusicLikeCount();
+    void HideMusicLikeCount();
     //截至设置like按钮的状态
 
     int getLikeCount() const {

@@ -18,6 +18,7 @@ void Widget::init(){
     ui->file_id->setPlaceholderText("请输入指定的file_id");
     user_sender=new userRequestSender(this);
     music_sender=new musicRequestSender(this);
+
     player = new MusicPlayer(this);
 
     connect(this,&Widget::sendGetMusicInfos,ui->tabwidget,&controlTabWidget::GetMusicInfos);
@@ -25,6 +26,8 @@ void Widget::init(){
     connect(ui->leftwidget,&LeftList::LeftListClicked_1,ui->tabwidget,&controlTabWidget::receiveShowCurrentTab);
     connect(ui->leftwidget,&LeftList::LeftListClicked_2,ui->tabwidget,&controlTabWidget::receiveShowCurrentTab);
     connect(ui->leftwidget,&LeftList::LeftListClicked_3,ui->tabwidget,&controlTabWidget::receiveShowCurrentTab);
+
+
 
 }
 

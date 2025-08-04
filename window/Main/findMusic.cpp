@@ -86,6 +86,13 @@ void findMusic::DealDownLoadMusic(bool ok,QString message,QString file_id){
         qWarning("无法打开文件写入");
     }
 
+    emit setMusicPathToWatcher(save_path+musicObj["music_name"].toString()+"."+ QFileInfo(musicObj["file_path"].toString()).suffix());
+    if(Item_map.find(file_id)!=Item_map.end()){
+        NewCourierItem* nitem=Item_map[file_id];
+        nitem->setFinishedDownloadStatus();
+        nitem->display();
+    }
+
 }
 
 void findMusic::DealLike(bool ok,QString message,QString file_id,qint64 LikeCnt,qint64 LikeStatus){
@@ -117,14 +124,35 @@ void findMusic::DealLikeInfos(bool ok,QString message,QStringList file_ids){
         qDebug()<<"DealLikeInfos error: "<<message;
         return ;
     }
+    qDebug()<<"DealLikeInfos enter! ";
     for (int i = 0; i < file_ids.size(); i++) {
+
         QString file_id = file_ids[i];
+        qDebug()<<"test file_id is: "<<file_id;
         if(Item_map.find(file_id)!=Item_map.end()){
             //将对应点赞按钮的状态更新为已点赞
             NewCourierItem* nitem=Item_map[file_id];
             nitem->setFinishedLikeStatus();
+            //一定要进行display操作，之前就是忘记还以为哪里出错了
+            nitem->display();
         }
 
+    }
+}
+//findmusic将指定uuid对应的item的已下载变成下载，恢复下载按钮
+void findMusic::onFileDeleteChanged(const QString &path){
+    QFileInfo fileInfo(path);
+    qDebug()<<"findMusic onFileChanged is "<<path;
+    //只对删除做操作（更改名字这些暂且不管)
+    if (fileInfo.exists()) {
+        return ;
+    }
+    qDebug()<<"findMusic onFileChanged is "<<path;
+    QString baseName = fileInfo.baseName();
+    if(Item_map.find(baseName)!=Item_map.end()){
+        NewCourierItem* nitem=Item_map[baseName];
+        nitem->setDownloadStatus();
+        nitem->display();
     }
 }
 
@@ -148,12 +176,49 @@ void findMusic::DealFindMusic(bool ok,QString message,QJsonArray musicListArray)
         file_ids.append(uuid);
         if(id< _id)
             id=_id;
-        //2：将获取到的musicListArray数据更新到ui上
-        AddItem();
-
-        //3：获取当前状态的map中哪些file_id是被当前用户给点赞了的（更新ui）
-        user_sender->queryLikeInfos(file_ids);
     }
+    //2：将获取到的musicListArray数据更新到ui上
+    AddItem();
+    //3：遍历file_infos文件，读取每一个uuid
+    ChangeItemDownloadStatus();
+    //4：获取当前状态的map中哪些file_id是被当前用户给点赞了的（更新ui）
+    user_sender->queryLikeInfos(file_ids);
+}
+
+void findMusic::ChangeItemDownloadStatus(){
+    QStringList uuidList=ReadDownloadStatus(file_info);
+    //然后将其指定的uuid的item进行渲染
+    for(int i=0;i<uuidList.size();i++){
+        Item_map[uuidList[i] ]->setFinishedDownloadStatus();
+        Item_map[uuidList[i] ]->display();
+    }
+}
+
+QStringList findMusic::ReadDownloadStatus(const QString &filePath){
+    QStringList uuidList;
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning("无法打开文件: %s", qUtf8Printable(filePath));
+        return uuidList;
+    }
+    QByteArray data = file.readAll();
+    file.close();
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+    if (parseError.error != QJsonParseError::NoError || !doc.isArray()) {
+        qWarning("JSON 解析失败或格式不是数组");
+        return uuidList;
+    }
+    QJsonArray array = doc.array();
+    for (const QJsonValue &value : array) {
+        if (value.isObject()) {
+            QJsonObject obj = value.toObject();
+            if (obj.contains("uuid") && obj["uuid"].isString()) {
+                uuidList.append(obj["uuid"].toString());
+            }
+        }
+    }
+    return uuidList;
 }
 
 void findMusic::AddItem(){
@@ -162,6 +227,7 @@ void findMusic::AddItem(){
         qint64 _id = musicObj["id"].toVariant().toLongLong();
 //        QString uuid = musicObj["uuid"].toString();  key就是uuid
         qint64 like_count=musicObj["like_count"].toVariant().toLongLong();
+        qDebug()<<"like count is "<<like_count;
         QString music_name=musicObj["music_name"].toString();
         qint64 file_size=musicObj["file_size"].toVariant().toLongLong();
         double duration=musicObj["duration"].toDouble();

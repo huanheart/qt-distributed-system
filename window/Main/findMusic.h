@@ -51,10 +51,19 @@ public:
 
     void DealLike(bool ok,QString message,QString file_id,qint64 LikeCnt,qint64 LikeStatus);
 
+    void onFileDeleteChanged(const QString &path);
+
+signals:
+    void setMusicPathToWatcher(const QString& file_path);
+
 public:
 
 private:
     void AddItem();
+
+    QStringList ReadDownloadStatus(const QString &filePath);
+
+    void ChangeItemDownloadStatus();
 
 private:
     musicRequestSender* music_sender=nullptr;

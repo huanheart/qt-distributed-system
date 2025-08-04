@@ -2,6 +2,7 @@
 #define CONTROLTABWIDGET_H
 
 #include <QWidget>
+#include<QFileSystemWatcher>
 
 namespace Ui {
 class controlTabWidget;
@@ -27,7 +28,7 @@ signals:
 private:
     void init();
 private:
-
+    QFileSystemWatcher* watcher;
     Ui::controlTabWidget *ui;
 };
 

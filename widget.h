@@ -90,5 +90,7 @@ private:
 
     MusicPlayer *player;
 
+
+
 };
 #endif // WIDGET_H
